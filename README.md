@@ -80,5 +80,5 @@ Downstream consumers can use the schema ID in the payload to fetch the necessary
 Start the consumer/processor using the same environment variables as the producer, but targeting a different POM:
 
 ```bash
-mvn quarkus:dev -f ./producer/pom.xml -Dquarkus-profile=prod
+mvn quarkus:dev -f ./processor/pom.xml -Dquarkus-profile=prod
 ```
