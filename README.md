@@ -8,6 +8,7 @@ This is a copy of the Quickstart application created by [@carlesarnal](https://g
 * Java 11
 * Maven 3.8.1+
 * Git
+* [jq](https://stedolan.github.io/jq/)
 
 ## Kafka and Service Registry Setup
 
@@ -76,6 +77,8 @@ This causes the following to occur:
 * The Quarkus application will use the Avro schema to serialise the outgoing Quote on the `quote-requests` topic, and include the schema ID in the payload.
 
 Downstream consumers can use the schema ID in the payload to fetch the necessary Avro schema to deserialise and validate incoming data.
+
+## Start the Processing Consumer
 
 Start the consumer/processor using the same environment variables as the producer, but targeting a different POM:
 
