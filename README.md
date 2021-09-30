@@ -1,6 +1,6 @@
 # Using OpenShift Service Registry with Quarkus and Kafka
 
-This is a copy of the a Quickstart application created by [@carlesarnal](https://github.com/redhat-developer/app-services-guides/pull/303).
+This is a copy of the Quickstart application created by [@carlesarnal](https://github.com/redhat-developer/app-services-guides/pull/303) to be used with Red Hat OpenShift Service Registry. 
 
 ## Prerequisites
 
@@ -76,3 +76,9 @@ This causes the following to occur:
 * The Quarkus application will use the Avro schema to serialise the outgoing Quote on the `quote-requests` topic, and include the schema ID in the payload.
 
 Downstream consumers can use the schema ID in the payload to fetch the necessary Avro schema to deserialise and validate incoming data.
+
+Start the consumer/processor using the same environment variables as the producer, but targeting a different POM:
+
+```bash
+mvn quarkus:dev -f ./producer/pom.xml -Dquarkus-profile=prod
+```
