@@ -27,6 +27,10 @@ You need both a Kafka and Service Registry instance prior to running the Quarkus
     ```bash
     rhoas kafka topic create --name quote-requests
     ```
+1. Create a Kafka Topic to hold processed quotes:
+    ```bash
+    rhoas kafka topic create --name quotes
+    ```
 1. Create a free Service Registry instance
     ```bash
     rhoas service-registry create --name quotes-sr --use
