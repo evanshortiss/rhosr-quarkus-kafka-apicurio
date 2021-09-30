@@ -15,10 +15,14 @@ import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
 
 import io.smallrye.mutiny.Multi;
+
+import org.jboss.logging.Logger;
 import org.jboss.resteasy.reactive.RestSseElementType;
 
 @Path("/quotes")
 public class QuotesResource {
+
+    private static final Logger Log = Logger.getLogger(QuotesResource.class);
 
     @Channel("quote-requests")
     Emitter<Quote> quoteRequestEmitter;
@@ -33,6 +37,7 @@ public class QuotesResource {
         UUID uuid = UUID.randomUUID();
         Quote quote = new Quote(uuid.toString(), ThreadLocalRandom.current().nextInt());
         quoteRequestEmitter.send(quote);
+        Log.info("Sent quote request with ID: " + quote.getId());
         return quote;
     }
 
@@ -46,7 +51,7 @@ public class QuotesResource {
     @Produces(MediaType.SERVER_SENT_EVENTS) // denotes that server side events (SSE) will be produced
     @RestSseElementType(MediaType.TEXT_PLAIN)
     public Multi<Quote> stream() {
-        return quotes.log();
+        return quotes.onItem().invoke(q -> Log.info("Received processed quote: " + q.getId())).log();
     }
 }
 
