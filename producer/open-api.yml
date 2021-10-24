@@ -1,0 +1,36 @@
+openapi: 3.0.2
+info:
+    title: Quote API
+    version: 1.0.0
+paths:
+    /quotes:
+        summary: Returns an SSE stream of processed quotes.
+    /quotes/request:
+        summary: Request a quote.
+        post:
+            responses:
+                '200':
+                    $ref: '#/components/responses/quote-request-response'
+            operationId: request-quote
+components:
+    schemas:
+        Quote:
+            title: Root Type for Quote
+            description: ''
+            type: object
+            properties:
+                id:
+                    type: string
+                price:
+                    format: int32
+                    type: integer
+            example:
+                id: string
+                price: 23874
+    responses:
+        quote-request-response:
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/Quote'
+            description: ''
