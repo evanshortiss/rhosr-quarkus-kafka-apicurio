@@ -85,3 +85,4 @@ Start the consumer/processor using the same environment variables as the produce
 ```bash
 mvn quarkus:dev -f ./processor/pom.xml -Dquarkus-profile=prod
 ```
+# rhosr-quarkus-avro-confluent
